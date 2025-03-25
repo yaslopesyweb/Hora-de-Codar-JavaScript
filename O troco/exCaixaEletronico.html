@@ -41,6 +41,7 @@ Quando o usuário escolher sair do sistema, exiba uma mensagem agradecendo por u
 <body>
     <script>
         var saldo = 150.00;
+        var senha = 3589;
 
         var nome = prompt("Digite seu nome: ");
         alert("Olá " + nome + ", é um prazer ter você por aqui!");
@@ -72,12 +73,22 @@ Quando o usuário escolher sair do sistema, exiba uma mensagem agradecendo por u
             }
         }
 
+        function senhaValida() {
+            var senhaInformada = parseInt(prompt("Digite sua senha: "));
+            if (senhaInformada !== senha) {
+                alert("Senha inválida. Tente novamente.");
+                inicio();
+            }
+        }
+
         function verSaldo() {
+            senhaValida();
             alert("Seu saldo é: R$ " + saldo.toFixed(2));
             inicio();
         }
         
         function verExtrato() {
+            senhaValida();
             const movimentacao = [
             {data: "18-03-2025", descricao: "Transferência recebida por Pix", valor: 200.00}, 
             {data: "19-03-2025", descricao: "Compra no débito", valor: 50.00}, 
@@ -87,6 +98,7 @@ Quando o usuário escolher sair do sistema, exiba uma mensagem agradecendo por u
         }
 
         function fazerSaque() {
+            senhaValida();
             let valor = parseFloat(prompt("Digite o valor para o saque: "));
             if (isNaN(valor) || valor <= 0 || valor > saldo) {
                 alert("Operação não autorizada.");
@@ -98,6 +110,7 @@ Quando o usuário escolher sair do sistema, exiba uma mensagem agradecendo por u
         }
 
         function fazerDeposito() {
+            senhaValida();
             let valor = parseFloat(prompt("Digite o valor para o depósito: "));
             if (isNaN(valor) || valor <= 0) {
                 alert("Operação não autorizada. Insira um valor válido.");
@@ -109,6 +122,7 @@ Quando o usuário escolher sair do sistema, exiba uma mensagem agradecendo por u
         }
 
         function fazerTransferencia(){
+            senhaValida();
             var conta = prompt("Digite o número da conta: ");
             var valor = parseFloat(prompt("Digite o valor da transferência: "));
             if (isNaN(valor) || valor <= 0 || valor > saldo) {
