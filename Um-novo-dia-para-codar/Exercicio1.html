@@ -8,23 +8,26 @@
 <body>
     <script>
 
-        var contador = 0;
-        var listaEstudante = [];
-        var nome;
+        // 1. Crie um programa onde o usuário possa cadastrar estudantes sem limites, e, em seguida, Se o usuário digitar "PARE" o programa deve exibir a quantidade de estudantes cadastrados e a lista com cada um deles. 
 
-        while(nome != "PARE" || "pare" || "Pare"){
-            var nome = prompt("Informe o nome do estudante: ");
-            contador++;
-            listaEstudante.push(nome);
-            if(nome == "PARE" || nome == "pare" || nome == "Pare"){
-                break;
-            }else{
-                document.write( "Nº de estudantes cadastrados: ", contador);
-                document.write("<br>", "Lista de estudantes: " + listaEstudante , "<br>");
+        let estudantes = [];
+        let continuar = true;
+        let contador = 0;
+        while (continuar) {
+            let estudante = prompt("Digite o nome do estudante ou 'PARE' para encerrar:");
+            if (estudante.toUpperCase() === "PARE") {
+                continuar = false;
+            } else {
+                estudantes.push(estudante);
+                contador++;
             }
         }
-
-
+        document.write(`<p>Quantidade de estudantes cadastrados: <strong>${contador}</strong></p>`);
+        document.write("<p>Lista de estudantes cadastrados: </p>");
+        for(let nome of estudantes) {
+            document.write(`<p>${nome}</p>`);
+        }
+        document.write("<ul>");
 
     </script>
 </body>
