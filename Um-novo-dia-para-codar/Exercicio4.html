@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Frutas</title>
+</head>
+<body>
+
+    <h1>Lista de Frutas</h1>
+    <ul id="lista-frutas"></ul> 
+    <script>
+        let frutas = ["uva", "banana", "maçã", "melão", "melância", "abacaxi", "laranja"];
+
+        function atualizarLista() {
+            const lista = document.getElementById("lista-frutas");
+            lista.innerHTML = ""; 
+
+            for (let fruta of frutas) {
+                const item = document.createElement("li");
+                item.textContent = fruta;
+                lista.appendChild(item);
+            }
+        }
+
+        atualizarLista();
+
+        while (frutas.length > 0) {
+            let usuarioFruta = prompt(`Frutas disponíveis: ${frutas.join(", ")}\nDigite o nome de uma fruta para remover ou 'sair' para finalizar:`);
+
+            if (!usuarioFruta) continue;
+            usuarioFruta = usuarioFruta.toLowerCase();
+
+            if (usuarioFruta === 'sair') break;
+
+            const index = frutas.findIndex(f => f.toLowerCase() === usuarioFruta);
+
+            if (index !== -1) {
+                frutas.splice(index, 1);
+                alert("Fruta foi retirada da lista.");
+                atualizarLista();
+            } else {
+                alert("Fruta indisponível no nosso mercado.");
+            }
+        }
+
+        if (frutas.length === 0) {
+            alert("Lista de compras finalizada.");
+        }
+    </script>
+
+</body>
+</html>
